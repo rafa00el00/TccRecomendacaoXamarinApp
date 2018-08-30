@@ -1,19 +1,24 @@
-﻿using System;
-
+﻿
+using TCCApp.Negocio;
+using TCCApp.Services;
 using TCCApp.Views;
 using Xamarin.Forms;
 
 namespace TCCApp
 {
-	public partial class App : Application
+    public partial class App : Application
 	{
-
+        
 		public App ()
 		{
 			InitializeComponent();
 
-
-            MainPage = new MainPage();
+            DependencyService.Register<IAuthNegocio, AuthNegocio>();
+            DependencyService.Register<IEventoNegocio, EventoNegocio>();
+            DependencyService.Register<IEventoService, EventoService>();
+            DependencyService.Register<IServiceHelper, ServiceHelper>();
+            
+            MainPage = new NavigationPage(new LoginPage());
         }
 
 		protected override void OnStart ()

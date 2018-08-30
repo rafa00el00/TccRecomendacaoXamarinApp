@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:TCCApp.ViewModels"
+             x:Class="TCCApp.Views.ListaRecomendadosPage"
+             Title="{Binding Titulo}"
+             >
+    <ContentPage.BindingContext>
+        <local:ListaRecomendadosViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <StackLayout>
+            <Label x:Name="LblErro"/>
+            <ListView x:Name="ItemsListView" 
+                ItemsSource="{Binding Items}"
+                VerticalOptions="FillAndExpand"
+                 HasUnevenRows="true"
+                 RefreshCommand="{Binding LoadItemsCommand}"
+                 IsPullToRefreshEnabled="true"
+                 IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                 CachingStrategy="RecycleElement"
+                ItemSelected="OnItemSelected"
+                      >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Padding="10">
+                                <Label Text="{Binding Titulo}" 
+                       LineBreakMode="NoWrap" 
+                                       Font="Bold,20"
+                       Style="{DynamicResource ListItemTextStyle}" 
+                       FontSize="16" />
+                                <Label Text="{Binding DescricaoSimples}" 
+                       Style="{DynamicResource DescricaoSimples}"
+                       FontSize="13" />
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="Quando?" Font="Bold" ></Label>
+                                    <Label Text="{Binding DataEvento, StringFormat='{0:dd/MM/yyyy}'}" ></Label>
+                                    <Label Text="{Binding Valor, StringFormat='{0:C2}'}" HorizontalOptions="EndAndExpand"></Label>
+                                    </StackLayout>
+                                    
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -6,22 +6,22 @@ namespace TCCApp.Services
 
    
 
-    public class ServiceHelper
+    public class ServiceHelper : IServiceHelper
     {
 
         
         public ServiceHelper()
         {
             Http = new HttpClient();
-            BaseUrl = "";
+            BaseUrl = "http://192.168.0.100:5000/api";
         }
 
         public HttpClient Http { get; }
         public string BaseUrl { get; }
 
-        public Task<HttpResponseMessage> Get(string url)
+        public async Task<HttpResponseMessage> GetAsync(string url)
         {
-            return Http.GetAsync(BaseUrl + url);
+            return await Http.GetAsync(BaseUrl + url);
         }
 
         public Task<HttpResponseMessage> Post(string url, HttpContent content)

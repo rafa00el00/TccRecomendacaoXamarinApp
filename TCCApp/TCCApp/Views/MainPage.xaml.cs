@@ -11,6 +11,7 @@ namespace TCCApp.Views
 		public MainPage ()
 		{
 			InitializeComponent ();
+            NavigationPage.SetHasBackButton(this, false);
 		}
 	}
 }
