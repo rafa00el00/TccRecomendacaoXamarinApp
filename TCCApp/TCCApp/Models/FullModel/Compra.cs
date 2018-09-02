@@ -10,6 +10,7 @@
         public double ValorTotal { get; set; }
         public string GuidUsuario { get; set; }
         public string NomeUsuario { get; set; }
+        public int CodEmpresa { get; set; }
 
         //Meio de Pagamento
         //Status

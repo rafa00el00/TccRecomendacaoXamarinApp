@@ -13,7 +13,7 @@ namespace TCCApp.Services
         public ServiceHelper()
         {
             Http = new HttpClient();
-            BaseUrl = "http://192.168.0.100:5000/api";
+            BaseUrl = "http://192.168.137.1:5000/api";
         }
 
         public HttpClient Http { get; }
